@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuideMTA — Hivatalos Szerverszabályzat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0a0814;
+            --bg-card: #131024;
+            --purple-main: #8a2be2;
+            --purple-glow: #a855f7;
+            --blue-main: #00d2ff;
+            --blue-glow: #38bdf8;
+            --red-main: #ff2a6d;
+            --red-glow: #f43f5e;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: rgba(138, 43, 226, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-light);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 210, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 42, 109, 0.1) 0%, transparent 60%);
+            background-attachment: fixed;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(19, 16, 36, 0.8), rgba(10, 8, 20, 0.9));
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--blue-main), var(--purple-glow), var(--red-main));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* NAV */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 18px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            border-color: var(--blue-main);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+            color: var(--blue-main);
+            transform: translateY(-2px);
+        }
+
+        /* CARD SECTIONS */
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.3s ease;
+        }
+
+        .section-card:hover {
+            border-color: var(--purple-glow);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--blue-main);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid rgba(0, 210, 255, 0.2);
+            padding-bottom: 8px;
+        }
+
+        h2 span {
+            color: var(--red-main);
+        }
+
+        /* GRID FOR TERMS */
+        .grid-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .term-box {
+            background: rgba(10, 8, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid var(--purple-main);
+        }
+
+        .term-box strong {
+            color: var(--purple-glow);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* LIST STYLES */
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        ul li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--red-main);
+            font-weight: bold;
+        }
+
+        /* RED ALERT BOX */
+        .alert-box {
+            background: rgba(255, 42, 109, 0.1);
+            border: 1px solid var(--red-main);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            color: #ff99b6;
+        }
+
+        .alert-box strong {
+            color: var(--red-main);
+        }
+
+        /* PURPLE HIGHLIGHT BOX */
+        .info-box {
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid var(--purple-main);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>GuideMTA — Szabályzat</h1>
+        <p>V3 / V4 Alapú RolePlay Szerver Hivatalos Szabályzata</p>
+    </header>
+
+    <nav>
+        <a href="#fogalmak">Fogalmak</a>
+        <a href="#altalanos">Általános RP</a>
+        <a href="#rablas">Rablások</a>
+        <a href="#tusejtes">Túszejtés</a>
+        <a href="#akciok">Akciók</a>
+        <a href="#rendvedelem">Rendvédelem</a>
+        <a href="#frakciok">Frakciók</a>
+        <a href="#ooc">OOC & Account</a>
+    </nav>
+
+    <!-- 1. Megjegyzés -->
+    <div class="section-card">
+        <h2><span>01.</span> Fontos Megjegyzés</h2>
+        <div class="info-box">
+            A szabályzat <strong>GuideMTA</strong> névre lett előkészítve. A szerveren használt SeeMTA V3/V4 mod parancsait, rendszereit, itemjeit és rablásait folyamatosan ellenőrizni kell. A szabályzat nem ismerete nem mentesít a felelősségre vonás alól!
+        </div>
+    </div>
+
+    <!-- 2. Fogalmak -->
+    <div class="section-card" id="fogalmak">
+        <h2><span>02.</span> Kommunikációt Elősegítő Fogalmak</h2>
+        <div class="grid-terms">
+            <div class="term-box"><strong>HQ</strong> Frakció bázisa / Főhadiszállása.</div>
+            <div class="term-box"><strong>IRL</strong> In Real Life – A valóságban.</div>
+            <div class="term-box"><strong>IC</strong> In Character – Karakteren belüli történések.</div>
+            <div class="term-box"><strong>OOC</strong> Out Of Character – Karakteren kívüli kommunikáció.</div>
+            <div class="term-box"><strong>PK</strong> Panaszkönyv (Fórum / Discord szekció).</div>
+            <div class="term-box"><strong>Crash</strong> Játék hiba miatti leállása.</div>
+            <div class="term-box"><strong>Jail / Ban</strong> Szabályszegésért járó ideiglenes vagy végleges büntetés.</div>
+            <div class="term-box"><strong>PP</strong> Prémium Pont (Prémium Shop).</div>
+            <div class="term-box"><strong>CK</strong> Character Kill – Karakter történetének lezárása.</div>
+            <div class="term-box"><strong>NonScript Frakció</strong> Szerver által engedélyezett, script nélküli szervezet.</div>
+        </div>
+    </div>
+
+    <!-- 3. Általános RP szabályok -->
+    <div class="section-card" id="altalanos">
+        <h2><span>03.</span> Általános RP Fogalmak & Szabályok</h2>
+        <div class="grid-terms">
+            <div class="term-box"><strong>MG (MetaGaming)</strong> OOC információ IC felhasználása.</div>
+            <div class="term-box"><strong>DM (DeathMatch)</strong> Indokolatlan ölés vagy támadás.</div>
+            <div class="term-box"><strong>RK (RevengeKill)</strong> Halál utáni bosszú vagy visszatérés.</div>
+            <div class="term-box"><strong>PG (PowerGaming)</strong> Hősködés, irreális cselekedet.</div>
+            <div class="term-box"><strong>DB (DriveBy)</strong> Járművel való szándékos elütés/ölés.</div>
+            <div class="term-box"><strong>SK (SpawnKill)</strong> Éledéskor azonnali megölés.</div>
+            <div class="term-box"><strong>Force RP</strong> Saját RP ráerőltetése másra.</div>
+            <div class="term-box"><strong>NonRP</strong> Karakterhez nem illő, irreális cselekedet.</div>
+        </div>
+    </div>
+
+    <!-- 4. Rablások -->
+    <div class="section-card" id="rablas">
+        <h2><span>04.</span> Rablási Szabályzat</h2>
+        <ul>
+            <li><strong>ElőRP:</strong> Rablás előtt kötelező a minimum 20 soros, egyedi ElőRP! Bind-RP használata szigorúan TILOS!</li>
+            <li><strong>Sérülés/Gyilkosság:</strong> Rablás után az áldozatot megölni, animba lőni vagy elvéreztetni TILOS!</li>
+            <li><strong>Kezdők védelme:</strong> 4-es szint alatt álló kezdő játékost rabolni vagy akcióba bevonni TILOS!</li>
+            <li><strong>Pénzbeli Limit:</strong> Rablás során legfeljebb <strong>350 000 $</strong> készpénz vehető el!</li>
+            <li><strong>Védett tárgyak:</strong> Duty itemek, PP-s tárgyak és Event itemek NEM rabolhatóak!</li>
+            <li><strong>Iratok & Kulcsok:</strong> Személyi, jogsi, jelvény, valamint autó/ház/széf kulcsok nem vehetőek el!</li>
+            <li>Hirdetésből és tesztvezetésből rablást kezdeményezni szigorúan TILOS!</li>
+        </ul>
+    </div>
+
+    <!-- 5. Túszejtés -->
+    <div class="section-card" id="tusejtes">
+        <h2><span>05.</span> Túszejtési Szabályzat</h2>
+        <ul>
+            <li>Túszejtéshez minimum 20 soros ElőRP és megalapozott, nyomós IC indok szükséges.</li>
+            <li><strong>Váltságdíj limit:</strong> Egy túszért maximum <strong>1 000 000 $</strong> kérhető!</li>
+            <li>Civilek NEM szervezhetnek túszejtést (csak illegális vagy engedélyezett NonScript frakciók).</li>
+            <li>A túsztárgyalót megölni nyomós indok nélkül TILOS!</li>
+            <li>Egy illegális frakció 48 órán belül csak 1 alkalommal tarthat váltságdíjas túszejtést.</li>
+        </ul>
+    </div>
+
+    <!-- 6. Akciók -->
+    <div class="section-card" id="akciok">
+        <h2><span>06.</span> ATM, Benzinkút & Aranyraktár Rablás</h2>
+        <ul>
+            <li>Az akciókban kizárólag a script szerinti illegális frakciótagok vehetnek részt.</li>
+            <li>A rablásokhoz legalább 20 soros ElőRP szükséges.</li>
+            <li><strong>Campelés tilalma:</strong> A rendvédelemnek tilos a leadóhelyeket és menekülési útvonalakat szándékosan campelni!</li>
+            <li>Az Aranyraktár rablását szórakozásból vagy próbából elindítani szigorúan TILOS (Ban-t von maga után)!</li>
+        </ul>
+    </div>
+
+    <!-- 7. Rendvédelem -->
+    <div class="section-card" id="rendvedelem">
+        <h2><span>07.</span> Rendvédelmi Szabályzat</h2>
+        <ul>
+            <li><strong>Felszólítás:</strong> Tűzparancs előtt kötelező a megfelelő felszólítás (kivéve ha azonnali életveszély áll fenn).</li>
+            <li><strong>Jelöletlen jármű:</strong> Jelöletlen rendőrautóra tilos tüzet nyitni, amíg nem bizonyosodsz meg arról, hogy rendőr ül benne!</li>
+            <li><strong>Sokkoló:</strong> Járműből sokkolni TILOS! Éles fegyverre sokkolót csak reális helyzetben lehet használni.</li>
+            <li><strong>Provokáció:</strong> Rendőrt szándékosan üldözés kiváltása céljából provokálni (Rendőrhergelés) TILOS!</li>
+        </ul>
+    </div>
+
+    <!-- 8. Frakciók -->
+    <div class="section-card" id="frakciok">
+        <h2><span>08.</span> Frakció Szabályzat</h2>
+        <ul>
+            <li>Frakcióba kizárólag IC úton lehet bekerülni! OOC barátság vagy skin miatt rangot adni TILOS!</li>
+            <li>Frakció kulcsokat, itemeket, HQ-t és rangokat pénzért értékesíteni szigorúan TILOS!</li>
+            <li>A legális és illegális frakciók tagságát a GuideMTA vezetősége szabályozza.</li>
+        </ul>
+    </div>
+
+    <!-- 9-10. OOC & Account -->
+    <div class="section-card" id="ooc">
+        <h2><span>09.</span> OOC Szabályok & Account Biztonság</h2>
+        <div class="alert-box">
+            <strong>ÖRÖK BAN-T VON MAGA UTÁN:</strong>
+            <br>• Más szerverek reklámozása!
+            <br>• OOC Kereskedelem (IC vagyon/fiók eladása valódi pénzért)!
+            <br>• Account megosztása vagy átadása más személynek!
+            <br>• Segédprogramok, cheatek használata és bugkihasználás!
+        </div>
+        <br>
+        <ul>
+            <li><strong>PP & Event Itemek:</strong> PP-s és Event itemekkel átverni másokat szigorúan TILOS!</li>
+            <li><strong>RP közbeni kilépés (RefuseRP):</strong> RP szituáció közben kilépni tilos! Ha meghiúsul a játék hiba miatt, jelezni kell az Adminnak.</li>
+            <li><strong>Rendszámok & Paintjobok:</strong> Trágár, felnőtt tartalmú, politikai vagy nem reális minták/feliratok használata tiltott!</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 GuideMTA — Minden jog fenntartva | Design by AI Assistant</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
