@@ -1,13 +1,21 @@
-<!DOCTYPE html><html lang="hu"><head>
+<!DOCTYPE html>
+<html lang="hu">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GUIDMTA - RolePlay</title>
+    <title>NoonMTA — Kezdőlap</title>
+    <!-- Böngésző fül ikon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         html {
@@ -17,362 +25,451 @@
         body {
             background-color: #0b0e14;
             color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Navigáció */
-        nav {
+        /* Jobb felső navigáció */
+        header {
             position: absolute;
             top: 0;
-            right: 0;
+            left: 0;
             width: 100%;
-            max-width: 1200px;
+            padding: 28px 60px;
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            padding: 25px 40px;
-            gap: 20px;
-            z-index: 10;
+            z-index: 100;
         }
 
-        nav a {
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-menu a {
             color: #ffffff;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            transition: color 0.2s;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: color 0.25s ease;
         }
 
-        nav a:hover {
-            color: #28a745;
+        .nav-menu a:hover {
+            color: #21a647;
         }
 
-        nav span {
-            color: #333a48;
-            font-weight: bold;
+        .nav-divider {
+            color: #363e4d;
+            font-size: 0.9rem;
+            user-select: none;
         }
 
-        .container {
-            width: 100%;
-            max-width: 1100px;
-            padding: 0 20px 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* HERO SECTION */
+        /* Hero szekció (Főképernyő) */
         .hero {
-            height: 100vh;
-            width: 100%;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
+            padding: 20px;
+            position: relative;
         }
 
-        .site-logo {
-            width: 110px;
-            height: auto;
-            margin-bottom: 20px;
+        /* NoonMTA Zöld Hatszög 'N' Logó */
+        .hero-logo {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 22px;
             object-fit: contain;
+            filter: drop-shadow(0 0 18px rgba(33, 166, 71, 0.35));
+            transition: transform 0.3s ease;
         }
 
-        h1 {
-            font-size: 52px;
+        .hero-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-title {
+            font-size: 3.1rem;
             font-weight: 900;
-            color: #28a745;
+            color: #21a647;
             letter-spacing: 2px;
-            margin-bottom: 15px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            line-height: 1.1;
         }
 
-        .subtitle {
-            color: #a0a5b5;
-            font-size: 16px;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
+        .hero-subtitle {
+            color: #b4bcc8;
+            font-size: 0.98rem;
+            font-weight: 500;
+            max-width: 580px;
+            margin-bottom: 32px;
             line-height: 1.6;
         }
 
-        /* Gombok */
-        .btn-main {
-            background-color: #28a745;
-            color: #ffffff;
-            padding: 14px 32px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 800;
+        .btn-green {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            font-size: 15px;
-            transition: transform 0.2s, background 0.2s;
-        }
-
-        .btn-main:hover {
-            transform: translateY(-2px);
-            background-color: #218838;
-        }
-
-        .btn-download {
-            background-color: #28a745;
-            color: #ffffff;
-            padding: 12px 28px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            border: none;
-            font-size: 15px;
-            transition: background 0.2s ease;
-        }
-
-        .btn-download:hover {
-            background-color: #218838;
-        }
-
-        /* Kártyák / Szakaszok */
-        .card {
-            background-color: #121722;
-            border: 1px solid #1a202c;
-            border-radius: 12px;
-            padding: 40px;
-            width: 100%;
-            margin-bottom: 25px;
-            scroll-margin-top: 40px;
-        }
-
-        .join-section {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .monitor-box {
-            flex: 1;
-            display: flex;
             justify-content: center;
+            gap: 10px;
+            background-color: #259c47;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            padding: 13px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(37, 156, 71, 0.25);
+        }
+
+        .btn-green:hover {
+            background-color: #2cb553;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 156, 71, 0.4);
+        }
+
+        /* Alsó szekció: Csatlakozás és Rendszerkövetelmények */
+        .content-section {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 40px 20px 100px;
+        }
+
+        /* Nagy csatlakozási kártya */
+        .connect-card {
+            background-color: #10151e;
+            border: 1px solid #1b2230;
+            border-radius: 10px;
+            padding: 45px 50px;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 45px;
             align-items: center;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
         }
 
-        .monitor-box img {
+        /* Monitor illusztráció bal oldalon */
+        .monitor-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #1a1e24;
+            padding: 25px;
+            border-radius: 6px;
+        }
+
+        .monitor-screen {
             width: 100%;
-            max-width: 450px;
-            height: auto;
-            display: block;
+            max-width: 340px;
+            height: 205px;
+            background: linear-gradient(135deg, #512da8 0%, #303f9f 45%, #0288d1 100%);
+            border: 8px solid #111317;
+            border-radius: 6px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
         }
 
-        .join-details {
-            flex: 1.2;
+        /* MTA Splash ablak a monitoron belül */
+        .mta-splash {
+            width: 175px;
+            background: #141820;
+            border: 1px solid #2c3545;
+            border-radius: 3px;
+            padding: 12px;
+            text-align: left;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.75);
+        }
+
+        .mta-splash-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .r-badges {
+            display: flex;
+            gap: 4px;
+        }
+
+        .r-badge {
+            width: 14px;
+            height: 14px;
+            border-radius: 2px;
+            font-size: 9px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+        }
+
+        .mta-splash-text {
+            font-size: 0.45rem;
+            color: #8892a4;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .mta-splash-title {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 2px;
+        }
+
+        .mta-splash-sub {
+            font-size: 0.42rem;
+            color: #ffb800;
+            margin-bottom: 8px;
+        }
+
+        .mta-splash-legal {
+            font-size: 0.28rem;
+            color: #5c667a;
+            line-height: 1.2;
+        }
+
+        .monitor-taskbar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: #0d1015;
+            display: flex;
+            align-items: center;
+            padding: 0 6px;
+        }
+
+        .win-btn {
+            width: 6px;
+            height: 6px;
+            background: #ffffff;
+            opacity: 0.8;
+        }
+
+        .monitor-stand {
+            width: 44px;
+            height: 24px;
+            background: linear-gradient(to bottom, #0d0f12, #1c2026);
+        }
+
+        .monitor-base {
+            width: 120px;
+            height: 7px;
+            background: #16191f;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Jobb oldali útmutató szöveg */
+        .connect-info {
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .join-details h2 {
-            font-size: 26px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-
-        .bold-tagline {
+        .connect-info h2 {
+            font-size: 1.55rem;
             font-weight: 800;
             color: #ffffff;
-            font-size: 15px;
-            margin-bottom: 12px;
-            max-width: 450px;
-            line-height: 1.4;
+            margin-bottom: 14px;
         }
 
-        .sub-tagline {
-            color: #a0a5b5;
-            font-size: 14px;
-            margin-bottom: 20px;
+        .connect-lead {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+            line-height: 1.45;
+        }
+
+        .connect-desc {
+            font-size: 0.86rem;
+            color: #9ba3b0;
+            margin-bottom: 22px;
         }
 
         .steps-list {
-            color: #ffffff;
-            font-size: 14px;
-            text-align: left;
-            margin-bottom: 20px;
-            line-height: 2;
-            list-style-position: inside;
-        }
-
-        .wish-text {
-            color: #28a745;
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        /* Rendszerkövetelmények */
-        .specs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            width: 100%;
-            margin-bottom: 25px;
-        }
-
-        .spec-card h3 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-
-        .spec-card ul {
-            padding-left: 20px;
-        }
-
-        .spec-card li {
-            font-size: 14px;
-            margin-bottom: 12px;
-            color: #a0a5b5;
-            line-height: 1.5;
-        }
-
-        .spec-card strong {
-            color: #ffffff;
-        }
-
-        /* Discord Szakasz */
-        .discord-card {
+            list-style: none;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.88rem;
+            color: #d0d6e0;
+            margin-bottom: 22px;
         }
 
-        .discord-info h2 {
-            font-size: 24px;
-            margin-bottom: 12px;
-        }
-
-        .discord-info p {
-            color: #a0a5b5;
-            font-size: 14px;
+        .good-luck {
+            color: #21a647;
+            font-size: 0.85rem;
+            font-weight: 700;
             margin-bottom: 18px;
         }
 
-        .discord-list {
+        /* Rendszerkövetelmény kártyák */
+        .req-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .req-card {
+            background-color: #10151e;
+            border: 1px solid #1b2230;
+            border-radius: 10px;
+            padding: 35px 40px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .req-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 22px;
+        }
+
+        .req-list {
             list-style: none;
-        }
-
-        .discord-list li {
-            color: #ffffff;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .discord-list li::before {
-            content: "✓ ";
-            color: #28a745;
-            font-weight: bold;
-            margin-right: 5px;
-        }
-
-        .btn-discord {
-            background-color: #5865f2;
-            color: #ffffff;
-            padding: 12px 26px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
             display: flex;
-            align-items: center;
-            gap: 10px;
+            flex-direction: column;
+            gap: 13px;
+            font-size: 0.86rem;
+            color: #b4bcc8;
         }
 
-        .btn-discord:hover {
-            background-color: #4752c4;
+        .req-list li {
+            position: relative;
+            padding-left: 16px;
+            line-height: 1.5;
         }
 
-        /* Lábléc */
-        footer {
-            width: 100%;
-            max-width: 1100px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 20px;
-            border-top: 1px solid #1a202c;
-            color: #a0a5b5;
-            font-size: 14px;
+        .req-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #6b7485;
+            font-weight: 900;
         }
 
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: bold;
+        .req-list strong {
             color: #ffffff;
+            font-weight: 700;
         }
 
-        .footer-logo img {
-            width: 25px;
-            height: auto;
-        }
-
-        @media (max-width: 850px) {
-            .join-section {
-                flex-direction: column;
+        @media (max-width: 900px) {
+            header {
+                padding: 20px 25px;
+                justify-content: center;
             }
-            .specs-grid {
+            .connect-card {
+                grid-template-columns: 1fr;
+                padding: 30px 25px;
+            }
+            .req-grid {
                 grid-template-columns: 1fr;
             }
         }
-    </style></head><body>
+    </style>
+</head>
+<body>
 
-    <!-- Navigáció -->
-    <nav>
-        <a href="#segitseg-resz">Segítség</a>
-        <span>|</span>
-        <a href="#kozosseg-resz">Közösség</a>
-        <span>|</span>
-        <a href="szabalyzat.html">Szabályzat</a>
-    </nav>
+    <!-- Jobb felső navigáció -->
+    <header>
+        <nav class="nav-menu">
+            <a href="#csatlakozas">Segítség</a>
+            <span class="nav-divider">|</span>
+            <a href="#" target="_blank">Közösség</a>
+            <span class="nav-divider">|</span>
+            <a href="szabalyzat.html">Szabályzat</a>
+        </nav>
+    </header>
 
-    <div class="container">
+    <!-- Főképernyő (Hero) -->
+    <section class="hero">
+        <!-- NoonMTA logó (feltételezve, hogy a logo.png a mappa gyökerében van, de ha kell, az SVG is benne marad fallbackként) -->
+        <img src="logo.png" alt="NoonMTA Logo" class="hero-logo" onerror="this.style.display='none'">
+
+        <h1 class="hero-title">NOONMTA</h1>
         
-        <!-- FŐOLDAL HERO SECTION -->
-        <div class="hero">
-            <img src="./logo.png" alt="GUIDMTA Logo" class="site-logo">
-            
-            <h1>GUIDMTA</h1>
-            <p class="subtitle">Kezd el a saját RP Karaktered a GUIDMTA szerverén, és alakítsd úgy a karaktered - ahogyan szeretnéd!</p>
-            <a href="#segitseg-resz" class="btn-main">► Csatlakozz most</a>
-        </div>
+        <p class="hero-subtitle">
+            Kezd el a saját RP Karaktered a NOONMTA szerverén, és alakítsd úgy a karaktered - ahogyan szeretnéd!
+        </p>
 
-        <!-- Segítség része -->
-        <div id="segitseg-resz" class="card join-section">
-            <div class="monitor-box">
-                <img src="./monitor.png" alt="GUIDMTA Monitor">
+        <a href="#csatlakozas" class="btn-green">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+            Csatlakozz most
+        </a>
+    </section>
+
+    <!-- Csatlakozás és Rendszerkövetelmények szekció -->
+    <main class="content-section" id="csatlakozas">
+        
+        <!-- Csatlakozási kártya (Monitorral) -->
+        <div class="connect-card">
+            <!-- Monitor grafika -->
+            <div class="monitor-wrapper">
+                <div class="monitor-screen">
+                    <div class="mta-splash">
+                        <div class="mta-splash-top">
+                            <div class="r-badges">
+                                <span class="r-badge" style="background: #2979ff;">R</span>
+                                <span class="r-badge" style="background: #ffb800;">R</span>
+                            </div>
+                            <span style="font-size: 8px; font-weight: 900; color: #fff;">T2</span>
+                        </div>
+                        <div class="mta-splash-text">Loading...</div>
+                        <div class="mta-splash-title">Multi Theft Auto</div>
+                        <div class="mta-splash-sub">[ stop playing with yourself ]</div>
+                        <div class="mta-splash-legal">
+                            © 2003-2026 Multi Theft Auto. All rights reserved.
+                        </div>
+                    </div>
+                    <div class="monitor-taskbar">
+                        <div class="win-btn"></div>
+                    </div>
+                </div>
+                <div class="monitor-stand"></div>
+                <div class="monitor-base"></div>
             </div>
-            <div class="join-details">
-                <h2>Csatlakozás a GUIDMTA szerverére</h2>
-                
-                <p class="bold-tagline">Légy részese Magyarország legnagyobb és legoptimalizáltabb GazdagRP közösségének!</p>
-                
-                <p class="sub-tagline">Vágj bele a második életedbe, itt minden lehetséges!</p>
-                
-                <ol class="steps-list">
-                    <li>Grand Theft Auto: San Andreas telepítése</li>
-                    <li>MTA:SA kliens letöltése</li>
-                    <li>MTA:SA kliens indítása</li>
-                    <li>GUIDMTA szócska begépelése a keresőbe</li>
-                </ol>
 
-                <p class="wish-text">Kellemes időtöltést kívánunk!</p>
+            <!-- Útmutató szövegek -->
+            <div class="connect-info">
+                <h2>Csatlakozás a NOONMTA szerverére</h2>
+                <p class="connect-lead">
+                    Légy részese Magyarország legnagyobb és<br>legoptimalizáltabb GazdagRP közösségének!
+                </p>
+                <p class="connect-desc">Vágj bele a második életedbe, itt minden lehetséges!</p>
 
-                <a href="javascript:void(0);" class="btn-download">
+                <ul class="steps-list">
+                    <li>1. Grand Theft Auto: San Andreas telepítése</li>
+                    <li>2. MTA:SA kliens letöltése</li>
+                    <li>3. MTA:SA kliens indítása</li>
+                    <li>4. NOONMTA szócska begépelése a keresőbe</li>
+                </ul>
+
+                <div class="good-luck">Kellemes időtöltést kívánunk!</div>
+
+                <a href="https://multitheftauto.com/" target="_blank" class="btn-green">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                     </svg>
@@ -381,13 +478,14 @@
             </div>
         </div>
 
-        <!-- Rendszerkövetelmények -->
-        <div class="specs-grid">
-            <div class="card spec-card">
+        <!-- Rendszerkövetelmények dobozok -->
+        <div class="req-grid">
+            <!-- Minimum -->
+            <div class="req-card">
                 <h3>Minimum rendszerkövetelmény</h3>
-                <ul>
+                <ul class="req-list">
                     <li><strong>Operációs rendszer:</strong> Windows 10</li>
-                    <li><strong>CPU:</strong> Intel Core 2 Quad CPU Q6600 @ 2.40GHz (4 CPUs) / AMD Phenom 9850 Quad-Core Processor (4 CPUs) @ 2.5GHz</li>
+                    <li><strong>CPU:</strong> Intel Core 2 Quad Q6600 / AMD Phenom 9850</li>
                     <li><strong>RAM:</strong> 6GB</li>
                     <li><strong>Videókártya:</strong> NVIDIA 9800 GT 1GB / AMD HD 4870 1GB</li>
                     <li><strong>Felbontás:</strong> legalább 1600x900</li>
@@ -395,11 +493,12 @@
                 </ul>
             </div>
 
-            <div class="card spec-card">
+            <!-- Ajánlott -->
+            <div class="req-card">
                 <h3>Ajánlott rendszerkövetelmény</h3>
-                <ul>
+                <ul class="req-list">
                     <li><strong>Operációs rendszer:</strong> Windows 10/11</li>
-                    <li><strong>CPU:</strong> Intel Core i5 3470 @ 3.2GHz (4 CPUs) / AMD X8 FX-8350 @ 4GHz (8 CPUs)</li>
+                    <li><strong>CPU:</strong> Intel Core i5 3470 / AMD X8 FX-8350</li>
                     <li><strong>RAM:</strong> 12GB</li>
                     <li><strong>Videókártya:</strong> NVIDIA GTX 660 2GB / AMD HD 7870 2GB</li>
                     <li><strong>Felbontás:</strong> legalább 1920x1080</li>
@@ -408,34 +507,7 @@
             </div>
         </div>
 
-        <!-- Közösség része -->
-        <div id="kozosseg-resz" class="card discord-card">
-            <div class="discord-info">
-                <h2>Csatlakozz Discord szerverünkre</h2>
-                <p>Légy részese a legaktívabb MTA közösségnek! Kérdezz, beszélgess más<br>játékosokkal, értesülj az eseményekről első kézből.</p>
-                <ul class="discord-list">
-                    <li>Közvetlenül tudsz beszélni a vezetőséggel</li>
-                    <li>Eseményekkel és a versenyekkel tisztában leszel</li>
-                    <li>Amennyiben valamit szeretnél jelenteni itt tudod megtenni</li>
-                </ul>
-            </div>
-            <div>
-                <a href="https://discord.gg/tVzp7sYgv" target="_blank" class="btn-discord">
-                    <svg width="20" height="20" viewBox="0 0 127.14 96.36" fill="#ffffff">
-                        <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0,3.36,6.83A97.68,97.68,0,0,0,42.29,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1,-10.85,-5.18c.91,-0.66,1.8,-1.34,2.66,-2a74.57,74.57,0,0,0,64.3,0c.87.68,1.76,1.36,2.66,2a68.68,68.68,0,0,1,-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19,-16.14c2.64,-27.38,-4.51,-51.11,-18.88,-72.15ZM42.45,65.69C36.18,65.69,31,60,31,53s5,-12.74,11.43,-12.74S54,45.92,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5.06,-12.74,11.44,-12.74S96.23,45.92,96.12,53,91.08,65.69,84.69,65.69Z"/>
-                    </svg>
-                    Csatlakozás
-                </a>
-            </div>
-        </div>
+    </main>
 
-    </div>
-
-    <!-- Lábléc -->
-    <footer>
-        <div class="footer-logo">
-            <img src="./logo.png" alt="GUIDMTA Logo">
-            GUIDMTA
-        </div>
-        <div>A legmodernebb magyar RolePlay közösség © 2026</div>
-    </footer></body></html>
+</body>
+</html>
